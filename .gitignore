@@ -1,0 +1,30 @@
+# Ignore Python bytecode and cache
+__pycache__/
+*.py[cod]
+
+# Ignore environment variables and secret keys
+.env
+
+# Ignore the database
+users.db
+
+# Ignore virtual environments
+venv/
+
+
+# Ignore static and media files (optional if generated dynamically)
+static/
+staticfiles/
+uploads/
+results/
+models/
+
+# Ignore CSV files
+*.csv
+
+# Ignore log files
+*.log
+
+# Ignore system files
+.DS_Store
+Thumbs.db

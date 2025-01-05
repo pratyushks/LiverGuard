@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <title>LiverGuard Prediction</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Arial', sans-serif;
+        background: #007bff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .container {
+        width: 100%;
+        max-width: 600px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        text-align: center;
+      }
+      h1.main-title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+      }
+      h2.title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 15px;
+      }
+      .input-field {
+        position: relative;
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+      }
+      .input-field i {
+        position: absolute;
+        left: 10px;
+        font-size: 16px;
+        color: #aaa;
+      }
+      .input-field input,
+      .input-field select {
+        width: 100%;
+        padding: 10px 10px 10px 35px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        outline: none;
+        color: #333;
+      }
+      .input-field input:focus,
+      .input-field select:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+      .btn {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .btn:hover {
+        background-color: #0056b3;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        border-radius: 8px;
+        width: 50%;
+        text-align: center;
+      }
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="main-title">Enter Your Data Here</h1>
+      <form method="POST" action="/bloodtestinput">
+        <h2 class="title">Predict Liver Health</h2>
+
+        <div class="input-field">
+          <i class="fas fa-calendar-alt"></i>
+          <input type="number" name="age" placeholder="Age" min="0" max="120" required />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-genderless"></i>
+          <select name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+          </select>
+        </div>
+        <div class="input-field">
+          <i class="fas fa-heartbeat"></i>
+          <input type="number" name="total_bilirubin" placeholder="Total Bilirubin" required />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-heartbeat"></i>
+          <input type="number" name="direct_bilirubin" placeholder="Direct Bilirubin" required />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-stethoscope"></i>
+          <input type="number" name="alkphos" placeholder="Alkaline Phosphate" required />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-stethoscope"></i>
+          <input type="number" name="sgpt" placeholder="SGPT" required />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-stethoscope"></i>
+          <input type="number" name="sgot" placeholder="SGOT" required />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-flask"></i>
+          <input type="number" name="total_proteins" placeholder="Total Proteins" required />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-flask"></i>
+          <input type="number" name="albumin" placeholder="Albumin" required />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-flask"></i>
+          <input type="number" name="ag_ratio" placeholder="Albumin/Globulin Ratio" required />
+        </div>
+        <button type="submit" class="btn">Submit Prediction</button>
+      </form>
+    </div>
+
+    <div id="result-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="close-modal">&times;</span>
+        <p id="result-text"></p>
+      </div>
+    </div>
+
+    <script>
+      const modal = document.getElementById('result-modal');
+      const closeModal = document.getElementById('close-modal');
+      const resultText = document.getElementById('result-text');
+
+      closeModal.onclick = function () {
+        modal.style.display = 'none';
+      };
+
+      window.onload = function () {
+        const result = '{{ result|safe }}';
+        if (result) {
+          resultText.textContent = result;
+          modal.style.display = 'block';
+        }
+      };
+    </script>
+  </body>
+</html>

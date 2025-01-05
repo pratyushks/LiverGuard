@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT Scan Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #007BFF;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            width: 80%;
+            gap: 20px;
+        }
+        .block {
+            flex: 1;
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .home-button {
+            margin-top: 30px;
+            background-color: white;
+            color: #007BFF;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+        .home-button:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>CT Scan Result</h1>
+    <div class="container">
+        <!-- Left block for input image -->
+        <div class="block">
+            <h2>Input Image</h2>
+            <img src="{{ original_image }}" alt="Input Image">
+        </div>
+
+        <!-- Right block for result image -->
+        <div class="block">
+            <h2>Generated Mask</h2>
+            <img src="{{ mask_image }}" alt="Generated Mask">
+        </div>
+    </div>
+
+    <!-- Home button -->
+    <a href="/home" class="home-button">Home Page</a>
+</body>
+</html>

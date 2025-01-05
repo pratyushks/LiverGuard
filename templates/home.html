@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to LiverGuard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #4481eb, #5995fd);
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+            background-color: #5995fd;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #4481eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to LiverGuard</h1>
+    <p>LiverGuard is a platform focused on promoting liver health.</p>
+    <p>We provide tools, insights, and resources to help individuals monitor and maintain optimal liver function.</p>
+    <div class="button-container">
+        <a href="{{ url_for('bloodtestinput') }}">Enter Your Blood Test Results</a>
+        <a href="{{ url_for('ctscan') }}">Upload Your CT Scan</a>
+    </div>
+</body>
+</html>
