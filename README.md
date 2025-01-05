@@ -38,8 +38,9 @@
 ```
 Liver Guard/
 │
-├── models/                  # Pre-trained models (e.g., Cancer_Detection.zip)
-│   └── Cancer_Detection.zip # Zipped model file for liver segmentation
+├── models/                  # Trained models
+│   ├── predictions.pkl      # Blood Test Input Prediction
+│   └── Cancer_Detection.pkl # CT Scan
 │
 ├── templates/               # HTML templates for Flask
 │   ├── index.html           # Homepage template
@@ -49,8 +50,7 @@ Liver Guard/
 │   └── result.html          # Result display page
 │
 ├── static/                  # Static files (CSS, JS, Images)
-│   ├── css/                 # Stylesheets
-│   └── js/                  # JavaScript files (if any)
+│   └── stles.css/           # JavaScript files (if any)
 │
 ├── uploads/                 # Folder for storing user-uploaded images
 │
